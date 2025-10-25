@@ -1,10 +1,11 @@
+# Installation method 
+```
+uv venv --python 3.12.0
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
 # 🚁 Drone Pursuit-Evasion Multi-Agent RL System
-
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-orange.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-A comprehensive multi-agent reinforcement learning environment for drone pursuit-evasion scenarios using PyBullet simulation. Features multiple RL algorithms (DQN, PPO, SAC), modular training system, and flexible configuration through Hydra.
 
 ![Drone Pursuit-Evasion](https://img.shields.io/badge/Environment-3D_Simulation-green.svg)
 ![Algorithms](https://img.shields.io/badge/Algorithms-DQN_|_PPO_|_SAC-blue.svg)
