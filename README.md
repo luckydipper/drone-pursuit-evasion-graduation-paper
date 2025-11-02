@@ -13,7 +13,7 @@ uv pip install -r requirements.txt
 # Demo Videos
 | Reinforcement Learning PPO Drone Pursuit-Evade | LiDAR Ray Cast in PyBullet Engine |
 |:---:|:---:|
-| [![PPO Pursuit-Evade Demo](https://img.youtube.com/vi/FNZUo16PEL8/maxresdefault.jpg)](https://youtu.be/FNZUo16PEL8) | [![LiDAR Ray Cast Demo](https://img.youtube.com/vi/s36m3Azg3rc/maxresdefault.jpg)](https://youtu.be/s36m3Azg3rc) |
+| [![PPO Pursuit-Evade Demo](https://img.youtube.com/vi/AHSQWR0wB9c/maxresdefault.jpg)](https://youtu.be/AHSQWR0wB9c) | [![LiDAR Ray Cast Demo](https://img.youtube.com/vi/s36m3Azg3rc/maxresdefault.jpg)](https://youtu.be/s36m3Azg3rc) |
 | Click to watch PPO training results | Click to watch LiDAR sensor visualization |
 
 ## 🚀 Quick Start
