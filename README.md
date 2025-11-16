@@ -90,19 +90,6 @@ python visualize_hydra.py visualization.weights_dir=weights/my_experiment/202412
 - **Stage 3 (Multiple)**: Complex navigation through grid of obstacles
 - **Curriculum Learning**: Progressive training from simple to complex scenarios
 
-### **Modular Training System**
-- **Refactored Architecture**: Clean, maintainable code structure
-- **Config-Based Environment**: Pass configuration objects instead of individual parameters
-- **Unified Agent API**: Consistent interface across all algorithms
-- **Flexible Scenarios**: Easy configuration of agent combinations
-- **Comprehensive Logging**: WandB integration with detailed metrics
-
-### **Rich Environment**
-- **3D Physics Simulation**: PyBullet-based realistic drone dynamics
-- **LiDAR Sensors**: Configurable ray-casting for obstacle detection
-- **Dynamic Scenarios**: Multiple starting positions and configurations
-- **Reward Engineering**: Sophisticated reward functions for both roles
-
 ## 📊 Available Training Scenarios
 
 ### **Algorithm Comparison Matrix**
@@ -176,26 +163,6 @@ conf/
 
 ## 📚 Documentation
 
-### **Current Documentation (Latest)**
-- **[📖 README.md](README.md)** - This main overview and quick start guide
-- **[📖 Complete Training Guide](README_TRAINING.md)** - Comprehensive training documentation
-- **[🎯 Training Examples](TRAINING_EXAMPLES.md)** - Practical examples and use cases  
-- **[⚡ Quick Reference](SCENARIO_QUICK_REFERENCE.md)** - Fast scenario lookup
-- **[🎓 Curriculum Learning Guide](CURRICULUM_LEARNING_GUIDE.md)** - Progressive complexity training (RECOMMENDED)
-- **[🏗️ Environment Stages Guide](ENVIRONMENT_STAGES_EXAMPLES.md)** - Detailed stage explanations
-
-### **Legacy Files**
-- **[🗂️ legacy/](legacy/)** - Contains obsolete scripts (do not use)
-  - Old training scripts replaced by modular system
-  - See `legacy/README.md` for migration guide
-
-## 🛠 System Requirements
-
-- **Python**: 3.8 or higher
-- **GPU**: CUDA-compatible GPU recommended (optional)
-- **Memory**: 4GB+ RAM recommended
-- **Display**: X11 for GUI evaluation (optional)
-
 ## 🎮 Usage Examples
 
 ### **Algorithm Comparison Study**
@@ -234,45 +201,6 @@ drones:
     is_training: true
 ```
 
-## 🐛 Troubleshooting
-
-### **Common Issues**
-```bash
-# X11/Display issues (headless systems)
-python train_hydra.py environment.render_simulation=false
-
-# Memory issues
-python train_hydra.py agent.batch_size=16 agent.buffer_size=5000
-
-# CUDA issues
-python train_hydra.py device=cpu
-
-# Configuration validation
-python train_hydra.py --cfg job
-```
-
-## 🤝 Contributing
-
-1. **Algorithm Extensions**: Add new RL algorithms in `RL/` directory
-2. **Environment Features**: Extend `task/lider_drone_base.py`
-3. **Scenario Creation**: Add new scenarios in `conf/scenario/`
-4. **Documentation**: Update guides and examples
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **PyBullet**: Physics simulation engine
-- **PyFlyt**: Drone simulation framework  
-- **Hydra**: Configuration management
-- **WandB**: Experiment tracking and visualization
-
----
-
-**🚀 Ready to start? Check out the [Training Guide](README_TRAINING.md) for detailed instructions!**
-
 ## 🎓 Curriculum Learning with Environment Stages
 
 ### **Progressive Training Strategy**
@@ -295,24 +223,6 @@ python train_hydra.py scenario=pursuit_evasion environment.stage=multiple traini
 - `environment.stage=single` - One central cylinder obstacle
 - `environment.stage=multiple` - Grid of obstacles (default)
 
-### **Transfer Learning Between Stages**
-```bash
-# Train base model on open stage
-python train_hydra.py scenario=sac_vs_sac environment.stage=open training.total_timesteps=30000 experiment_name=base_model
-
-# Transfer to single obstacle stage (resume from base model)
-python train_hydra.py scenario=sac_vs_sac environment.stage=single \
-  scenario.drones[0].resume_from=weights/base_model/pursuer_final.pt \
-  scenario.drones[1].resume_from=weights/base_model/evader_final.pt \
-  training.total_timesteps=30000 experiment_name=transferred_model
-
-# Final training on complex stage
-python train_hydra.py scenario=sac_vs_sac environment.stage=multiple \
-  scenario.drones[0].resume_from=weights/transferred_model/pursuer_final.pt \
-  scenario.drones[1].resume_from=weights/transferred_model/evader_final.pt \
-  training.total_timesteps=40000 experiment_name=final_model
-```
-
 ### **Quick Stage Testing**
 ```bash
 # Test any scenario across all stages quickly
@@ -320,23 +230,3 @@ python train_hydra.py scenario=sac_vs_sac environment.stage=open training.total_
 python train_hydra.py scenario=sac_vs_sac environment.stage=single training.total_timesteps=5000  
 python train_hydra.py scenario=sac_vs_sac environment.stage=multiple training.total_timesteps=5000
 ```
-
-**💡 Tip**: The stage parameter works with any scenario - just change `environment.stage=X` to switch complexity levels!
-
-## ✅ Latest Updates (2024)
-
-### 🛠️ Major Improvements Completed
-- **✅ Fixed PPO Training**: Resolved buffer interface issues, now fully functional
-- **✅ Fixed Environment Errors**: Eliminated agent key errors and tensor/list type mismatches  
-- **✅ Added Visualization Script**: New `visualize_hydra.py` for 3D simulation demos
-- **✅ Simplified Configuration**: Removed redundant YAML files, use `environment.stage=X` instead
-- **✅ Enhanced Documentation**: Comprehensive guides for all features and use cases
-
-### 🚀 Ready-to-Use Features
-- **Multi-Algorithm Training**: PPO, DQN, SAC all working correctly
-- **Environment Complexity Stages**: Easy parameter switching between complexity levels
-- **Visualization & Evaluation**: Professional tools for model demonstration
-- **Curriculum Learning**: Progressive training from simple to complex environments
-- **Cross-Algorithm Competition**: Train any algorithm against any other
-
----
